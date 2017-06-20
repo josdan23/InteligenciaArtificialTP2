@@ -7,6 +7,7 @@ package View;
 
 import Controller.ControllerInteligenciaArtificial;
 import java.awt.event.WindowEvent;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -15,10 +16,18 @@ import java.awt.event.WindowEvent;
 public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
 
     private ControllerInteligenciaArtificial controlador;
+    
+    
     /**
      * Creates new form ViewConfiguracionAlgoritmo
      */
     public ViewConfiguracionAlgoritmo() {
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(jrbMetodoNumeroDeEvoluciones);
+        grupo.add(jrbMetodoRepetirFitness);
+        jrbMetodoNumeroDeEvoluciones.setSelected(true);
+        
+        //da error el setSelected
         initComponents();
     }
 
@@ -50,7 +59,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         buttonGroup7 = new javax.swing.ButtonGroup();
         buttonGroup8 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jtTamanioDePoblacion = new javax.swing.JTextField();
+        jtNumeroEvoluciones = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jbCrearConfiguracion = new javax.swing.JButton();
         jbCancelarConfiguracion = new javax.swing.JButton();
@@ -59,7 +68,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         jrbMetodoRepetirFitness = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtValorDeMetodoDeCorte = new javax.swing.JTextField();
+        jtValorDeRepeticiones = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jtPorcentajeDeMutacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -69,13 +78,13 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
 
         jLabel1.setText("CONFIGURACION DEL ALGORITMO");
 
-        jtTamanioDePoblacion.addActionListener(new java.awt.event.ActionListener() {
+        jtNumeroEvoluciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTamanioDePoblacionActionPerformed(evt);
+                jtNumeroEvolucionesActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Tamaño de la poblacion");
+        jLabel2.setText("Evoluciones");
 
         jbCrearConfiguracion.setText("Crear");
         jbCrearConfiguracion.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +116,9 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel5.setText("Numeros de evoluciones o numeros de repeticiones fitness");
 
-        jtValorDeMetodoDeCorte.addActionListener(new java.awt.event.ActionListener() {
+        jtValorDeRepeticiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtValorDeMetodoDeCorteActionPerformed(evt);
+                jtValorDeRepeticionesActionPerformed(evt);
             }
         });
 
@@ -146,7 +155,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jrbMetodoNumeroDeEvoluciones)
-                                    .addComponent(jtTamanioDePoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtNumeroEvoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jtPorcentajeDeMutacion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -155,7 +164,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jtValorDeMetodoDeCorte, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jtValorDeRepeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel5))
                                     .addComponent(jrbMetodoRepetirFitness)
@@ -173,7 +182,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtTamanioDePoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtNumeroEvoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,7 +193,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtValorDeMetodoDeCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtValorDeRepeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
@@ -202,19 +211,34 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTamanioDePoblacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTamanioDePoblacionActionPerformed
+    private void jtNumeroEvolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNumeroEvolucionesActionPerformed
         
-    }//GEN-LAST:event_jtTamanioDePoblacionActionPerformed
+    }//GEN-LAST:event_jtNumeroEvolucionesActionPerformed
 
     private void jbCrearConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearConfiguracionActionPerformed
         
-        
+                
         //TODO agregar atributos para instanciar la configuracion:
         //tamanio de poblacion
         //metodo de corte
         //valor del metodo
         //porcentaje de mutacion
         controlador.crearConfiguracion();
+        
+        
+        int tipoCorte = 1;
+        System.out.println(!jrbMetodoNumeroDeEvoluciones.getFocusTraversalKeysEnabled());
+        if(jrbMetodoNumeroDeEvoluciones.getFocusTraversalKeysEnabled()){
+            tipoCorte = 1;
+            
+        } else {
+            tipoCorte = 2;
+        }
+        
+        int numeroEvoluciones = Integer.valueOf(jtNumeroEvoluciones.getText());
+        int cantidadRepeticiones = Integer.valueOf(jtValorDeRepeticiones.getText());
+        int porcentajeMutacion = Integer.valueOf(jtPorcentajeDeMutacion.getText());
+        controlador.configurarAlgoritmoGenetico(tipoCorte, numeroEvoluciones,cantidadRepeticiones,porcentajeMutacion );
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jbCrearConfiguracionActionPerformed
 
@@ -222,9 +246,9 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jrbMetodoNumeroDeEvolucionesActionPerformed
 
-    private void jtValorDeMetodoDeCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorDeMetodoDeCorteActionPerformed
+    private void jtValorDeRepeticionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorDeRepeticionesActionPerformed
         
-    }//GEN-LAST:event_jtValorDeMetodoDeCorteActionPerformed
+    }//GEN-LAST:event_jtValorDeRepeticionesActionPerformed
 
     private void jtPorcentajeDeMutacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPorcentajeDeMutacionActionPerformed
         
@@ -291,8 +315,8 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
     private javax.swing.JButton jbCrearConfiguracion;
     private javax.swing.JRadioButton jrbMetodoNumeroDeEvoluciones;
     private javax.swing.JRadioButton jrbMetodoRepetirFitness;
+    private javax.swing.JTextField jtNumeroEvoluciones;
     private javax.swing.JTextField jtPorcentajeDeMutacion;
-    private javax.swing.JTextField jtTamanioDePoblacion;
-    private javax.swing.JTextField jtValorDeMetodoDeCorte;
+    private javax.swing.JTextField jtValorDeRepeticiones;
     // End of variables declaration//GEN-END:variables
 }

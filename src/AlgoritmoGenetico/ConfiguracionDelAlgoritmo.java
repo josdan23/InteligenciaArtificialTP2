@@ -25,7 +25,7 @@ import org.jgap.impl.MutationOperator;
 Esta clase se usa para configurar el objeto Configuration necesario 
 para el algoritmo genentico
 */
-public class ConfiguracionDelAlgoritmo {
+public final class ConfiguracionDelAlgoritmo {
     
     private int metodoDeCorte;
     
@@ -41,17 +41,20 @@ public class ConfiguracionDelAlgoritmo {
     //se va a instanciar el atributo conf.
     //y se instancia el Operador de Mutacion.
     public ConfiguracionDelAlgoritmo () {
-        this(100, 50, 1); //llamar al constructor con paramentros 
+        conf = new DefaultConfiguration();
+        //this(100, 50, 1); //llamar al constructor con paramentros 
         
     }
     
     
     
-    public ConfiguracionDelAlgoritmo(int tamanioDePoblacion, int porcentajeDeMutacion, int metodoDeCorte) {
+    public ConfiguracionDelAlgoritmo(int metodoCorte, int numeroEvoluciones, int numeroRepeticiones, int porcentajeMutacion) {
         conf = new DefaultConfiguration();
-        setTamanioPoblacion(tamanioDePoblacion);
-        setMutacion(porcentajeDeMutacion);
-        setMetodoDeCorte(metodoDeCorte);
+        setTamanioPoblacion(100);
+        setMutacion(porcentajeMutacion);
+        setMetodoDeCorte(metodoCorte);
+        setNumeroDeEvoluciones(numeroEvoluciones);
+        setNumeroDeRepeticiones(numeroRepeticiones);
     }
 
     //METODO PARA ESTBLECER LA FITNES EN CONFIGURATION

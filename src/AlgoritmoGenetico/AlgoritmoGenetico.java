@@ -50,12 +50,15 @@ public class AlgoritmoGenetico {
             
             //TODO Hacer el metodo de corte
             //EVALUAR LA POBLACION
+            
+            long tiempoStart = System.currentTimeMillis();
             for (int i = 0; i< conf.getNumeroDeEvoluciones(); i++) {
                 poblacion.evolve();
                 
                 //TODO: llamar al metodo de Graficar funcion y pasar el valor de fitness
                 //System.out.printf("ValorFitness: %f\n", poblacion.getFittestChromosome().getFitnessValue());
             }
+            long tiempoEnd = System.currentTimeMillis();
 
             //OBTENER EL MEJOR CROMOSOMA DE LA POBLACION
             IChromosome mejorCromosoma = poblacion.getFittestChromosome();

@@ -61,7 +61,7 @@
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jrbMetodoNumeroDeEvoluciones" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtTamanioDePoblacion" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                                  <Component id="jtNumeroEvoluciones" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jtPorcentajeDeMutacion" min="-2" pref="93" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jtValorDeMetodoDeCorte" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="jtValorDeRepeticiones" min="-2" pref="94" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -100,7 +100,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtTamanioDePoblacion" min="-2" max="-2" attributes="0"/>
+              <Component id="jtNumeroEvoluciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -111,7 +111,7 @@
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtValorDeMetodoDeCorte" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtValorDeRepeticiones" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -137,14 +137,14 @@
         <Property name="text" type="java.lang.String" value="CONFIGURACION DEL ALGORITMO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtTamanioDePoblacion">
+    <Component class="javax.swing.JTextField" name="jtNumeroEvoluciones">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtTamanioDePoblacionActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtNumeroEvolucionesActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tama&#xf1;o de la poblacion"/>
+        <Property name="text" type="java.lang.String" value="Evoluciones"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbCrearConfiguracion">
@@ -194,9 +194,9 @@
         <Property name="text" type="java.lang.String" value="Numeros de evoluciones o numeros de repeticiones fitness"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtValorDeMetodoDeCorte">
+    <Component class="javax.swing.JTextField" name="jtValorDeRepeticiones">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtValorDeMetodoDeCorteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtValorDeRepeticionesActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

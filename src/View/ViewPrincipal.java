@@ -60,6 +60,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jbInciarServidor.setText("INICIAR SERVIDOR");
+        jbInciarServidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbInciarServidorActionPerformed(evt);
+            }
+        });
 
         jbConfigurarAlgoritmo.setText("CONFIGURAR\nALGORITMO");
         jbConfigurarAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +127,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbConfigurarAlgoritmoActionPerformed
 
     private void jbVerGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerGraficoActionPerformed
-        
-        
+             
         controlador.graficar();
     }//GEN-LAST:event_jbVerGraficoActionPerformed
+
+    private void jbInciarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInciarServidorActionPerformed
+        //controlador.procesarDatos(null, WIDTH)
+    }//GEN-LAST:event_jbInciarServidorActionPerformed
 
     /**
      * @param args the command line arguments

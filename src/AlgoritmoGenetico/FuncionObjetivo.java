@@ -16,15 +16,17 @@ import org.jgap.IChromosome;
  */
     public class FuncionObjetivo extends FitnessFunction {
     
-    private static ArrayList<Zona> zonasFunction = new ArrayList<Zona>();
-    //private static ArrayList<Zona> zonasCromosomas;
+    private static ArrayList<Zona> zonasFunction = new ArrayList<>();
     private static int donacionNecesaria;
+    private GraficaDeAlgoritmo grafica;
     
   
+    
     public FuncionObjetivo(ArrayList<Zona> zonas, int donacion){
          
         zonasFunction = zonas;
         donacionNecesaria = donacion;
+        
     }
 
     public FuncionObjetivo() {
@@ -35,58 +37,51 @@ import org.jgap.IChromosome;
     @Override
     protected double evaluate(IChromosome cromosoma) {
         
-        int numeroZonas = cromosoma.size();
+         int numeroZonas = cromosoma.size();
         //double fitness = 0;
-        
-        for (int i = 0; i < zonasFunction.size(); i++) {
-            //System.out.printf("Necesidades de la zona %d: %d\n", i, zonasFunction.get(i).getCantidadAguaRequerida());
-            //System.out.printf("Valor del cromosoma: %d\n", cromosoma.getGene(i).getAllele());
-        }
-        
+               
         ArrayList<Zona> zonasCromosomas = new ArrayList<>();
         for(int i=0;i<numeroZonas;i++){
             int cantDonacion = getCantidadDonacion(cromosoma,i);
             Zona zonaCromosoma = new Zona((i+1),cantDonacion);
-            
             zonasCromosomas.add(zonaCromosoma);
-          //  System.out.println("Numer: " + zonasCromosomas.get(i).getNumero() + " Agua: " + zonasCromosomas.get(i).getCantAgua());
+          
         }
-        int diferencia;
-        
-
-        //diferencia = zonasCromosomas.get(0).getCantAgua() - zonasFunction.get(0).getCantAgua();
-        //int fitness = (500 - diferencia);
-         int donacionCromosoma = 0;
-        //System.out.println("1: "+ fitness);
+       
+        int donacionCromosoma = 0;
         int coeficienteCeros = 0;
         int coeficienteDiferencia = 0;
+        int Diferencia[] = new int[zonasFunction.size() + 1];
+              
+        
         for (Zona zc : zonasCromosomas) {
             donacionCromosoma += zc.getCantidadAguaRequerida();
             for (Zona zf : zonasFunction) {
                 if (zc.getNumeroDeZona() == zf.getNumeroDeZona()) {
                     
-                    diferencia = Math.abs(zc.getCantidadAguaRequerida()- zf.getCantidadAguaRequerida());
+                    Diferencia[zf.getNumeroDeZona()] = Math.abs(zc.getCantidadAguaRequerida()- zf.getCantidadAguaRequerida());
                     
-                    //System.out.println("gen agua"+ zc.getCantAgua() + "agua pedida" + zf.getCantAgua());
-                    //System.out.println(diferencia);
-                    coeficienteDiferencia = (500 - diferencia);
-                    if(diferencia==0){
+                    coeficienteDiferencia = coeficienteDiferencia + Diferencia[zf.getNumeroDeZona()];
+                    
+                    if(Diferencia[zf.getNumeroDeZona()] == 0){
                         coeficienteCeros ++;
+                        
                     }
                 }
                 
             }
         }
         
-        int fitness = 10*coeficienteCeros + 5 * coeficienteDiferencia;
-        //System.out.println("2: "+fitness);
-        if(donacionCromosoma == donacionNecesaria){
-            fitness = fitness + 1000;
-           
-        }
-        // System.out.println("3: " + fitness);
-        //System.out.println(fitness);
         
+        int fitness = 2500 -coeficienteDiferencia;
+       
+        if(donacionCromosoma == donacionNecesaria){
+            fitness += 500 *coeficienteCeros;
+        }
+        
+        
+        
+        grafica.agregarFitness(fitness);
         return fitness;
     }
     

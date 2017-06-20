@@ -35,7 +35,15 @@ public class ControllerInteligenciaArtificial {
         return algoritmoGenetico.ejecutar(zonas, cantidadDeAguaDonada);
     }
     
-    
+    public void configurarAlgoritmoGenetico(int metodoCorte, int numeroEvoluciones, int numeroRepeticiones, int porcentajeMutacion){
+        
+        configuracion.setMetodoDeCorte(metodoCorte);
+        configuracion.setNumeroDeEvoluciones(numeroEvoluciones);
+        configuracion.setNumeroDeRepeticiones(numeroRepeticiones);
+        configuracion.setMutacion(porcentajeMutacion);
+        configuracion.setTamanioPoblacion(100);
+        System.out.println("todo bien");
+    }
     public void graficar() {
         GraficaDeAlgoritmo graficarDeAlgoritmo = new GraficaDeAlgoritmo();
         graficarDeAlgoritmo.graficar();
