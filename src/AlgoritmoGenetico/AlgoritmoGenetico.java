@@ -52,6 +52,8 @@ public class AlgoritmoGenetico {
             //EVALUAR LA POBLACION
             for (int i = 0; i< conf.getNumeroDeEvoluciones(); i++) {
                 poblacion.evolve();
+                
+                //TODO: llamar al metodo de Graficar funcion y pasar el valor de fitness
                 //System.out.printf("ValorFitness: %f\n", poblacion.getFittestChromosome().getFitnessValue());
             }
 

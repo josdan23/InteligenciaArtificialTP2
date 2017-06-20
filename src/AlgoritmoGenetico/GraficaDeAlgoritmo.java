@@ -47,4 +47,9 @@ public class GraficaDeAlgoritmo {
         ventana.add(panel);
     }
     
+    //TODO: agregar metodo para recibir los datos
+    
+    //TODO: agregar metodo que grafique con los datos
+
+    
 }
