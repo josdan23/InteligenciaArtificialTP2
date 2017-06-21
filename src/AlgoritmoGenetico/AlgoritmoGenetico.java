@@ -53,12 +53,20 @@ public class AlgoritmoGenetico {
             //EVALUAR LA POBLACION
             
             long timeStart = System.currentTimeMillis();
-            for (int i = 0; i< conf.getNumeroDeEvoluciones(); i++) {
-                poblacion.evolve();
-                
+            
+            //determina el metodo de corte
+            if(conf.getMetodoDeCorte() == 1){
+                metodoDeCorteEvolucionaHastaX(poblacion);
+            } else
+                metodoDeCorteEvolucionarHastaXRepetidos(poblacion);
+            
+            
+            //for (int i = 0; i< conf.getNumeroDeEvoluciones(); i++) {
+              //  poblacion.evolve();
+            //}
                 //TODO: llamar al metodo de Graficar funcion y pasar el valor de fitness
                 //System.out.printf("ValorFitness: %f\n", poblacion.getFittestChromosome().getFitnessValue());
-            }
+            //}
             
             
             //Calcula el tiempo de evolucion del algoritmo para graficar despues
@@ -127,10 +135,16 @@ public class AlgoritmoGenetico {
     //METODO DE CORTE 1: EVOLUCIONAR HASTA UN NUMERO DE VECES
     public IChromosome metodoDeCorteEvolucionaHastaX (Genotype poblacion) {
         
-        for (int i = 0; i < conf.getNumeroDeEvoluciones(); i++) {
-            poblacion.evolve();
-            //System.out.printf("Mejor solucion: %f\n", poblacion.getFittestChromosome().getFitnessValue());
-        }
+        IChromosome cromosomaMasApto = poblacion.getFittestChromosome();
+            double cromosomaMasApto1 = poblacion.getFittestChromosome().getFitnessValue();
+            double cromosomaMasApto2 = cromosomaMasApto1;
+            for (int i = 1; i < conf.getNumeroDeEvoluciones(); i++) {
+                poblacion.evolve();
+                cromosomaMasApto1 = poblacion.getFittestChromosome().getFitnessValue();
+                if (cromosomaMasApto1 == cromosomaMasApto2) {
+                    cromosomaMasApto = poblacion.getFittestChromosome();
+                }
+            }
         
         return poblacion.getFittestChromosome();
     }
@@ -138,17 +152,32 @@ public class AlgoritmoGenetico {
     //METODO DE CORTE 2: EVOLUCIONAR HASTA QUE LA SOLUCION SE REPITA UN NUMERO DE VECES
     public IChromosome metodoDeCorteEvolucionarHastaXRepetidos (Genotype poblacion) {
         
-        /*int i = 0;
-        while(true) {
         poblacion.evolve();
-        
-        
-        System.out.printf("Repeticion: %d-Solucion: %f\n", i++,poblacion.getFittestChromosome().getFitnessValue());
-        
-        }*/
-        
-        poblacion.evolve();
-        
+            IChromosome cromosomaMasApto = poblacion.getFittestChromosome();
+            int iter = 1;
+            double cromosomaMasApto1 = poblacion.getFittestChromosome().getFitnessValue();
+            double cromosomaMasApto2 = cromosomaMasApto1;
+            int i = 1;
+            do {
+                poblacion.evolve();
+                cromosomaMasApto1 = poblacion.getFittestChromosome().getFitnessValue();
+                if (cromosomaMasApto1 == cromosomaMasApto2) {
+                    i++;
+                } else {
+                    if (cromosomaMasApto2 < cromosomaMasApto1) {
+                        cromosomaMasApto = poblacion.getFittestChromosome();
+                        cromosomaMasApto2 = cromosomaMasApto1;
+                        i = 1;
+                    } else {
+                        cromosomaMasApto2 = cromosomaMasApto1;
+                    }
+                }
+                iter++;
+            } while (i != conf.getNumeroDeRepeticiones());
+
+            System.out.println("numeros de iteraciones: " + iter);
+      
+              
         return poblacion.getFittestChromosome();
     }
 

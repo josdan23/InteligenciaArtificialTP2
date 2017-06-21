@@ -27,12 +27,13 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
        
         //da error el setSelected
         initComponents();
-         
+        
+        //cONFIGURACION POR DEFECTO DE LA VISTA
         jrbMetodoNumeroDeEvoluciones.setSelected(true);
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(jrbMetodoNumeroDeEvoluciones);
         grupo.add(jrbMetodoRepetirFitness); 
-        jtValorDeRepeticiones.setEditable(false);
+        
         
     }
 
@@ -64,8 +65,6 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         buttonGroup7 = new javax.swing.ButtonGroup();
         buttonGroup8 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jtNumeroEvoluciones = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jbCrearConfiguracion = new javax.swing.JButton();
         jbCancelarConfiguracion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -73,7 +72,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         jrbMetodoRepetirFitness = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtValorDeRepeticiones = new javax.swing.JTextField();
+        jtValor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jtPorcentajeDeMutacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -82,14 +81,6 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         setTitle("Configuracion del Algoritmo Genetico");
 
         jLabel1.setText("CONFIGURACION DEL ALGORITMO");
-
-        jtNumeroEvoluciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNumeroEvolucionesActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Evoluciones");
 
         jbCrearConfiguracion.setText("Crear");
         jbCrearConfiguracion.addActionListener(new java.awt.event.ActionListener() {
@@ -126,14 +117,14 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Valor de repeticion");
+        jLabel4.setText("Valor deseado");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel5.setText("Numeros de evoluciones o numeros de repeticiones fitness");
 
-        jtValorDeRepeticiones.addActionListener(new java.awt.event.ActionListener() {
+        jtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtValorDeRepeticionesActionPerformed(evt);
+                jtValorActionPerformed(evt);
             }
         });
 
@@ -146,89 +137,77 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        jLabel7.setText("Porcentaje de evolucion");
+        jLabel7.setText("Porcentaje de mutacion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelarConfiguracion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbCrearConfiguracion)
-                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
+                            .addComponent(jrbMetodoNumeroDeEvoluciones)
+                            .addComponent(jrbMetodoRepetirFitness)
+                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jrbMetodoNumeroDeEvoluciones)
-                                    .addComponent(jtNumeroEvoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jtPorcentajeDeMutacion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel7)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jtValorDeRepeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jrbMetodoRepetirFitness)
-                                    .addComponent(jLabel4))
-                                .addContainerGap(88, Short.MAX_VALUE))))
+                                .addGap(6, 6, 6)
+                                .addComponent(jtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)))
+                        .addGap(0, 59, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(53, 53, 53))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jtPorcentajeDeMutacion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbCancelarConfiguracion)
+                .addGap(32, 32, 32)
+                .addComponent(jbCrearConfiguracion)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtNumeroEvoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jrbMetodoNumeroDeEvoluciones)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrbMetodoRepetirFitness)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtValorDeRepeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPorcentajeDeMutacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCrearConfiguracion)
-                    .addComponent(jbCancelarConfiguracion))
-                .addGap(20, 20, 20))
+                    .addComponent(jbCancelarConfiguracion)
+                    .addComponent(jbCrearConfiguracion))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtNumeroEvolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNumeroEvolucionesActionPerformed
-        
-    }//GEN-LAST:event_jtNumeroEvolucionesActionPerformed
 
     private void jbCrearConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearConfiguracionActionPerformed
         
@@ -240,18 +219,20 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         //porcentaje de mutacion
         controlador.crearConfiguracion();
         
-        int cantidadRepeticiones;
+        int cantidadRepeticiones = 0;
+        int numeroEvoluciones = 0;
         int tipoCorte;
         
         if(jrbMetodoNumeroDeEvoluciones.isSelected() == true){
             tipoCorte = 1;
             cantidadRepeticiones = 0;
+            numeroEvoluciones = Integer.valueOf(jtValor.getText());
         } else {
             tipoCorte = 2;
-            cantidadRepeticiones = Integer.valueOf(jtValorDeRepeticiones.getText());
+            cantidadRepeticiones = Integer.valueOf(jtValor.getText());
         }
         
-        int numeroEvoluciones = Integer.valueOf(jtNumeroEvoluciones.getText());
+        
         int porcentajeMutacion = Integer.valueOf(jtPorcentajeDeMutacion.getText());
         controlador.configurarAlgoritmoGenetico(tipoCorte, numeroEvoluciones,cantidadRepeticiones,porcentajeMutacion );
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
@@ -261,9 +242,9 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jrbMetodoNumeroDeEvolucionesActionPerformed
 
-    private void jtValorDeRepeticionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorDeRepeticionesActionPerformed
+    private void jtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorActionPerformed
         
-    }//GEN-LAST:event_jtValorDeRepeticionesActionPerformed
+    }//GEN-LAST:event_jtValorActionPerformed
 
     private void jtPorcentajeDeMutacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPorcentajeDeMutacionActionPerformed
         
@@ -276,11 +257,11 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarConfiguracionActionPerformed
 
     private void jrbMetodoNumeroDeEvolucionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbMetodoNumeroDeEvolucionesMouseClicked
-    jtValorDeRepeticiones.setEditable(false);        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_jrbMetodoNumeroDeEvolucionesMouseClicked
 
     private void jrbMetodoRepetirFitnessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbMetodoRepetirFitnessMouseClicked
-    jtValorDeRepeticiones.setEditable(true);        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jrbMetodoRepetirFitnessMouseClicked
 
     /**
@@ -328,7 +309,6 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup7;
     private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -338,8 +318,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
     private javax.swing.JButton jbCrearConfiguracion;
     private javax.swing.JRadioButton jrbMetodoNumeroDeEvoluciones;
     private javax.swing.JRadioButton jrbMetodoRepetirFitness;
-    private javax.swing.JTextField jtNumeroEvoluciones;
     private javax.swing.JTextField jtPorcentajeDeMutacion;
-    private javax.swing.JTextField jtValorDeRepeticiones;
+    private javax.swing.JTextField jtValor;
     // End of variables declaration//GEN-END:variables
 }
