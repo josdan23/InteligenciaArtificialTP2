@@ -173,6 +173,7 @@
         <Property name="text" type="java.lang.String" value="Numero de evoluciones"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrbMetodoNumeroDeEvolucionesMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbMetodoNumeroDeEvolucionesActionPerformed"/>
       </Events>
     </Component>
@@ -180,10 +181,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Repeticion de fitness"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrbMetodoRepetirFitnessMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Valores"/>
+        <Property name="text" type="java.lang.String" value="Valor de repeticion"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">

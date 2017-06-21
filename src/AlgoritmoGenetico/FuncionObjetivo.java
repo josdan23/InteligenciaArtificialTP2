@@ -18,7 +18,7 @@ import org.jgap.IChromosome;
     
     private static ArrayList<Zona> zonasFunction = new ArrayList<>();
     private static int donacionNecesaria;
-    private GraficaDeAlgoritmo grafica;
+    private GraficaDeAlgoritmo grafica = new GraficaDeAlgoritmo();
     
   
     

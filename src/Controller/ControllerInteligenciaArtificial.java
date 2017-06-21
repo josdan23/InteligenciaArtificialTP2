@@ -42,7 +42,7 @@ public class ControllerInteligenciaArtificial {
         configuracion.setNumeroDeRepeticiones(numeroRepeticiones);
         configuracion.setMutacion(porcentajeMutacion);
         configuracion.setTamanioPoblacion(100);
-        System.out.println("todo bien");
+        
     }
     public void graficar() {
         GraficaDeAlgoritmo graficarDeAlgoritmo = new GraficaDeAlgoritmo();

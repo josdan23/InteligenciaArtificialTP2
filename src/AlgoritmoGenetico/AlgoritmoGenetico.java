@@ -24,6 +24,7 @@ import org.jgap.impl.IntegerGene;
 public class AlgoritmoGenetico {
     
     ConfiguracionDelAlgoritmo conf;
+    GraficaDeAlgoritmo grafica = new GraficaDeAlgoritmo();
     
     public AlgoritmoGenetico(ConfiguracionDelAlgoritmo conf){
         this.conf = conf;
@@ -51,15 +52,20 @@ public class AlgoritmoGenetico {
             //TODO Hacer el metodo de corte
             //EVALUAR LA POBLACION
             
-            long tiempoStart = System.currentTimeMillis();
+            long timeStart = System.currentTimeMillis();
             for (int i = 0; i< conf.getNumeroDeEvoluciones(); i++) {
                 poblacion.evolve();
                 
                 //TODO: llamar al metodo de Graficar funcion y pasar el valor de fitness
                 //System.out.printf("ValorFitness: %f\n", poblacion.getFittestChromosome().getFitnessValue());
             }
-            long tiempoEnd = System.currentTimeMillis();
-
+            
+            
+            //Calcula el tiempo de evolucion del algoritmo para graficar despues
+            long timeEnd = System.currentTimeMillis();
+            long tiempoTotal = timeEnd - timeStart;
+            grafica.setTiempoDuracionEvolucion(tiempoTotal);
+            
             //OBTENER EL MEJOR CROMOSOMA DE LA POBLACION
             IChromosome mejorCromosoma = poblacion.getFittestChromosome();
             

@@ -22,13 +22,18 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
      * Creates new form ViewConfiguracionAlgoritmo
      */
     public ViewConfiguracionAlgoritmo() {
-        ButtonGroup grupo = new ButtonGroup();
-        grupo.add(jrbMetodoNumeroDeEvoluciones);
-        grupo.add(jrbMetodoRepetirFitness);
-        jrbMetodoNumeroDeEvoluciones.setSelected(true);
         
+        //jrbMetodoNumeroDeEvoluciones.setSelected(true);
+       
         //da error el setSelected
         initComponents();
+         
+        jrbMetodoNumeroDeEvoluciones.setSelected(true);
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(jrbMetodoNumeroDeEvoluciones);
+        grupo.add(jrbMetodoRepetirFitness); 
+        jtValorDeRepeticiones.setEditable(false);
+        
     }
 
     public ControllerInteligenciaArtificial getControlador() {
@@ -103,6 +108,11 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         jLabel3.setText("Metodo de corte");
 
         jrbMetodoNumeroDeEvoluciones.setText("Numero de evoluciones");
+        jrbMetodoNumeroDeEvoluciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrbMetodoNumeroDeEvolucionesMouseClicked(evt);
+            }
+        });
         jrbMetodoNumeroDeEvoluciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbMetodoNumeroDeEvolucionesActionPerformed(evt);
@@ -110,8 +120,13 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         });
 
         jrbMetodoRepetirFitness.setText("Repeticion de fitness");
+        jrbMetodoRepetirFitness.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrbMetodoRepetirFitnessMouseClicked(evt);
+            }
+        });
 
-        jLabel4.setText("Valores");
+        jLabel4.setText("Valor de repeticion");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel5.setText("Numeros de evoluciones o numeros de repeticiones fitness");
@@ -225,18 +240,18 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         //porcentaje de mutacion
         controlador.crearConfiguracion();
         
+        int cantidadRepeticiones;
+        int tipoCorte;
         
-        int tipoCorte = 1;
-        System.out.println(!jrbMetodoNumeroDeEvoluciones.getFocusTraversalKeysEnabled());
-        if(jrbMetodoNumeroDeEvoluciones.getFocusTraversalKeysEnabled()){
+        if(jrbMetodoNumeroDeEvoluciones.isSelected() == true){
             tipoCorte = 1;
-            
+            cantidadRepeticiones = 0;
         } else {
             tipoCorte = 2;
+            cantidadRepeticiones = Integer.valueOf(jtValorDeRepeticiones.getText());
         }
         
         int numeroEvoluciones = Integer.valueOf(jtNumeroEvoluciones.getText());
-        int cantidadRepeticiones = Integer.valueOf(jtValorDeRepeticiones.getText());
         int porcentajeMutacion = Integer.valueOf(jtPorcentajeDeMutacion.getText());
         controlador.configurarAlgoritmoGenetico(tipoCorte, numeroEvoluciones,cantidadRepeticiones,porcentajeMutacion );
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
@@ -259,6 +274,14 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         
     }//GEN-LAST:event_jbCancelarConfiguracionActionPerformed
+
+    private void jrbMetodoNumeroDeEvolucionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbMetodoNumeroDeEvolucionesMouseClicked
+    jtValorDeRepeticiones.setEditable(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbMetodoNumeroDeEvolucionesMouseClicked
+
+    private void jrbMetodoRepetirFitnessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbMetodoRepetirFitnessMouseClicked
+    jtValorDeRepeticiones.setEditable(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbMetodoRepetirFitnessMouseClicked
 
     /**
      * @param args the command line arguments

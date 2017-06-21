@@ -43,9 +43,9 @@ public class InteligenciaArtificialTP2 {
         int aguaNecesariaXZona;
         ArrayList<Zona> zonas = new ArrayList();
         for (int i = 0; i < cantidadDeZonas; i++) {
-            System.out.printf("AGUA NECESARIA EN ZONA %d:\n", i);
+            System.out.printf("AGUA NECESARIA EN ZONA %d:\n", i+1);
             aguaNecesariaXZona = entrada.nextInt();
-            zonas.add(new Zona(i, aguaNecesariaXZona));
+            zonas.add(new Zona(i+1, aguaNecesariaXZona));
             
             /**@TODO tengo que hacer algo*/
         }
@@ -55,7 +55,7 @@ public class InteligenciaArtificialTP2 {
         
         //ControllerInteligenciaArtificial controlador = new ControllerInteligenciaArtificial();
         //controlador.crearConfiguracion();
-        ArrayList<Integer> solucion = controlador.procesarDatos(zonas, cantidadDeZonas);
+        ArrayList<Integer> solucion = controlador.procesarDatos(zonas, aguaDisponible);
         
         imprimir(zonas, solucion);
        

@@ -20,7 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class GraficaDeAlgoritmo {
     
     private static final ArrayList<Integer> arrayListFitness = new ArrayList<>();
-    private static long tiempoDuracionEvolucion;
+    private static long tiempoTotalEvolucion = 0;
     
 
     public GraficaDeAlgoritmo() {
@@ -30,25 +30,24 @@ public class GraficaDeAlgoritmo {
     public void graficar(){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-        int cantidadEvoluciones = arrayListFitness.size();
+        double cantidadEvoluciones = arrayListFitness.size();
+        
         Integer duracionDeCadaEvolucion;
-        duracionDeCadaEvolucion = (int)(tiempoDuracionEvolucion/cantidadEvoluciones);
+        double division;
+        division = (tiempoTotalEvolucion/cantidadEvoluciones)*10000;
+        
+        duracionDeCadaEvolucion = (int) division;
+        
         Integer time = duracionDeCadaEvolucion;
         
-        for (int fitness: arrayListFitness){
+        for (int i = 1; i<= arrayListFitness.size();i+=10000){
         
-        dataset.addValue(fitness, "fitness", time);
-        time +=  duracionDeCadaEvolucion;
+        dataset.addValue(arrayListFitness.get(i).intValue(), "fitness", time);
+        time = time +  duracionDeCadaEvolucion;
         
         }
         
-        /*
-        dataset.addValue(34, "Hospitales", "1933");
-        dataset.addValue(23, "Hospitales", "1943");
-        dataset.addValue(54, "Hospitales", "1953");
-        dataset.addValue(43, "Hospitales", "1963");
-        dataset.addValue(23, "Hospitales", "1973");
-        */
+        
         JFreeChart lineChart = ChartFactory.createLineChart("Evolucion de la fitness",
                 "Tiempo", 
                 "Valor de la Fitness", 
@@ -66,12 +65,19 @@ public class GraficaDeAlgoritmo {
     }
     
     
-    public void agregarFitness(int fitness){
+    public void agregarFitness(Integer fitness){
         arrayListFitness.add(fitness);
     }
+
+    public ArrayList<Integer> getArrayListFitness() {
+        return arrayListFitness;
+    }
+
+   
+    
     
     public void setTiempoDuracionEvolucion(long tiempo){
-        tiempoDuracionEvolucion = tiempo;
+        tiempoTotalEvolucion = tiempo;
     }
     //TODO: agregar metodo para recibir los datos
     
