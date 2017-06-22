@@ -105,7 +105,10 @@ public final class ConfiguracionDelAlgoritmo {
          try {
             MutationOperator mutacion = new MutationOperator(conf);
             
-            mutacion.setMutationRate(porcentaje);
+            //if(porcentaje != 0)
+                //mutacion.setMutationRate(100/porcentaje);
+            //else
+                mutacion.setMutationRate(porcentaje); //por defecto 0.02 o 2%
             
             conf.addGeneticOperator(mutacion);
         } catch (InvalidConfigurationException ex) {

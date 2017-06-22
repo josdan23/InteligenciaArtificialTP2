@@ -9,8 +9,12 @@ import AlgoritmoGenetico.AlgoritmoGenetico;
 import AlgoritmoGenetico.ConfiguracionDelAlgoritmo;
 import Controller.ControllerInteligenciaArtificial;
 import Model.Zona;
+import Services.Servidor;
 import View.ViewConfiguracionAlgoritmo;
 import View.ViewPrincipal;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,30 +36,30 @@ public class InteligenciaArtificialTP2 {
         viewPrincipal.setVisible(true);
         viewPrincipal.setControlador(controlador);
         
+        Servidor servidor = new Servidor();
+        servidor.iniciarServer();
+        String mensaje = servidor.procesarPeticion();
         
-        /*ViewConfiguracionAlgoritmo viewConfiguracionAlgoritmo = new ViewConfiguracionAlgoritmo();
-        viewConfiguracionAlgoritmo.setVisible(true);*/
+        //servidor.cerrarConexion();
         
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese la cantidad de zonas:");
-        int cantidadDeZonas = entrada.nextInt();
+        int aguaDisponible = obtenerAguaDisponible(mensaje);
+        System.out.println("agua disponible:" + aguaDisponible);
         
-        int aguaNecesariaXZona;
-        ArrayList<Zona> zonas = new ArrayList();
-        for (int i = 0; i < cantidadDeZonas; i++) {
-            System.out.printf("AGUA NECESARIA EN ZONA %d:\n", i+1);
-            aguaNecesariaXZona = entrada.nextInt();
-            zonas.add(new Zona(i+1, aguaNecesariaXZona));
-            
-            /**@TODO tengo que hacer algo*/
+        ArrayList<Zona> zonas = obtenerZonas(mensaje);
+        
+        for (Zona zona : zonas) {
+            System.out.println("zona numero: " + zona.getNumeroDeZona());
+            System.out.println("agua requerida: " + zona.getCantidadAguaRequerida());
         }
         
-        System.out.println("AGUA DISPONIBLE:");
-        int aguaDisponible = entrada.nextInt();
         
-        //ControllerInteligenciaArtificial controlador = new ControllerInteligenciaArtificial();
-        //controlador.crearConfiguracion();
+     
         ArrayList<Integer> solucion = controlador.procesarDatos(zonas, aguaDisponible);
+        String respuesta = convertirJson(solucion);
+        
+       
+        servidor.responderCliente(respuesta);
+        servidor.cerrarConexion();
         
         imprimir(zonas, solucion);
        
@@ -68,6 +72,48 @@ public class InteligenciaArtificialTP2 {
                     zonas.get(i).getCantidadAguaRequerida(),
                     soluciones.get(i).intValue());
         }
+    }
+    
+    
+    private static int obtenerAguaDisponible(String mensaje) {
+       
+        JsonParser parser = new JsonParser();
+        
+        JsonElement element = parser.parse(mensaje);
+        
+        String aguaDisponible = element.getAsJsonObject().get("cantidadDonada").getAsString();
+        
+        return Integer.parseInt(aguaDisponible);
+    }
+    
+    private static ArrayList<Zona> obtenerZonas(String mensaje) {
+        
+        String zonasJson = mensaje.substring(29, mensaje.length()-1);
+        
+        Gson gson = new Gson();
+        
+        Zona[] zonas = gson.fromJson(zonasJson, Zona[].class);
+        
+        return convertToArrayList(zonas);
+    }
+    
+    private static ArrayList<Zona> convertToArrayList(Zona[] zonas) {
+        
+        ArrayList<Zona> zonasArrayList = new ArrayList();
+        
+        for (Zona zona : zonas) {
+            zonasArrayList.add(zona);
+        }
+        
+        return zonasArrayList;
+    }
+
+    private static String convertirJson(ArrayList<Integer> solucion) {
+        Gson gson = new Gson();
+        
+        String mensaje = gson.toJson(solucion);
+        System.out.println(mensaje);
+        return mensaje;
     }
     
 }

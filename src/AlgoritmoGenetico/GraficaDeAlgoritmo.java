@@ -40,7 +40,7 @@ public class GraficaDeAlgoritmo {
         
         Integer time = duracionDeCadaEvolucion;
         
-        for (int i = 1; i<= arrayListFitness.size();i+=10000){
+        for (int i = 1; i<= arrayListFitness.size();i+=1000){
         
         dataset.addValue(arrayListFitness.get(i).intValue(), "fitness", time);
         time = time +  duracionDeCadaEvolucion;

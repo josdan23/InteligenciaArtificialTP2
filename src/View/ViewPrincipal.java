@@ -7,6 +7,9 @@ package View;
 
 import AlgoritmoGenetico.GraficaDeAlgoritmo;
 import Controller.ControllerInteligenciaArtificial;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -21,6 +24,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
      */
     public ViewPrincipal() {
         initComponents();
+        PrintStream out = new PrintStream( new TextAreaOutputStream( jTextArea1 ) );
+        System.setOut(out);
+        System.setErr(out);
+
     }
 
     public ControllerInteligenciaArtificial getControlador() {
@@ -45,7 +52,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jbInciarServidor = new javax.swing.JButton();
         jbConfigurarAlgoritmo = new javax.swing.JButton();
         jbVerGrafico = new javax.swing.JButton();
 
@@ -58,13 +64,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-
-        jbInciarServidor.setText("INICIAR SERVIDOR");
-        jbInciarServidor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbInciarServidorActionPerformed(evt);
-            }
-        });
 
         jbConfigurarAlgoritmo.setText("CONFIGURAR\nALGORITMO");
         jbConfigurarAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
@@ -87,17 +86,14 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbInciarServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbConfigurarAlgoritmo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbVerGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(jbVerGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,13 +102,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbInciarServidor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbConfigurarAlgoritmo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbVerGrafico))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbVerGrafico)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -130,10 +124,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
              
         controlador.graficar();
     }//GEN-LAST:event_jbVerGraficoActionPerformed
-
-    private void jbInciarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInciarServidorActionPerformed
-        //controlador.procesarDatos(null, WIDTH)
-    }//GEN-LAST:event_jbInciarServidorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,13 +159,29 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbConfigurarAlgoritmo;
-    private javax.swing.JButton jbInciarServidor;
     private javax.swing.JButton jbVerGrafico;
     // End of variables declaration//GEN-END:variables
+}
+
+
+class TextAreaOutputStream extends OutputStream{
+    private JTextArea textControl;
+    
+    public TextAreaOutputStream(JTextArea control) {
+        textControl = control;
+    }
+    
+    public void write(int b) {
+        textControl.append(String.valueOf((char) b));
+    }
+    
+    
 }

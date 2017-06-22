@@ -231,7 +231,7 @@ public class ViewConfiguracionAlgoritmo extends javax.swing.JFrame {
             tipoCorte = 2;
             cantidadRepeticiones = Integer.valueOf(jtValor.getText());
         }
-        
+        int Tamanio = jtValor.getText().length();
         
         int porcentajeMutacion = Integer.valueOf(jtPorcentajeDeMutacion.getText());
         controlador.configurarAlgoritmoGenetico(tipoCorte, numeroEvoluciones,cantidadRepeticiones,porcentajeMutacion );
